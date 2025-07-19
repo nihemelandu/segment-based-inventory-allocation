@@ -10,6 +10,8 @@
 ## 🎯 Project Overview
 A data science solution addressing inefficient inventory management across fulfillment centers. By implementing customer behavioral segmentation and SKU-level demand forecasting, this system replaces the one-size-fits-all stocking approach with regional and behavioral demand-aware inventory allocation strategies.
 
+📘 For a detailed breakdown of the problem definition, scoping process, stakeholder requirements, and project methodology, see the full [Methodology Document](docs/methodology.md)
+
 ## 📊 Business Impact
 - **12% reduction** in shipping costs through optimized inventory placement
 - **18% fewer stockouts** via improved demand prediction and allocation
