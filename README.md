@@ -201,16 +201,18 @@ inventory-allocation-system/
 │   ├── data_dictionary.md
 │   ├── technical_appendix.md
 │   └── literature_review.md
+```
+---
+
+<!--
 ├── config/
 │   ├── model_config.yaml
-│   └── deployment_config.yaml
+│   └── deployment_config.yam
 └── deploy/
     ├── docker/
     ├── aws/
     └── gcp/
-```
-
----
+-->
 
 ## 🔬 Technical Implementation
 
@@ -293,7 +295,7 @@ make security-check
 *Note: Proprietary data anonymized; synthetic data maintains statistical properties.*
 
 ---
-
+<!--
 ## 🚀 Deployment & Reproducibility
 
 ### Docker Setup
@@ -320,7 +322,7 @@ docker run inventory-allocation python -m src.models.forecasting
 - **Performance Monitoring**: Automated alerts for accuracy degradation
 - **Retraining Schedule**: Monthly model updates with validation
 - **A/B Testing**: Continuous experimentation framework
-
+-->
 ---
 
 ## 📄 Citation
