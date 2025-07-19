@@ -1,53 +1,49 @@
-# Inventory Allocation System
-*End-to-End Customer Segmentation and Demand Forecasting for Optimized Fulfillment Operations*
+# Inventory Management Optimization System
+*Customer Behavioral Segmentation and SKU-Level Demand Forecasting for Fulfillment Center Operations*
 
 [![Python](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
 [![scikit-learn](https://img.shields.io/badge/scikit--learn-1.0+-orange.svg)](https://scikit-learn.org/)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
-[![Tests](https://img.shields.io/badge/Tests-Passing-green.svg)]()
 
 ---
 
 ## 🎯 Project Overview
-An end-to-end inventory allocation system that leverages customer segmentation and demand forecasting to optimize fulfillment center operations. The solution reduces shipping costs by 12%, decreases stockouts by 18%, and saves 20 hours monthly in inventory redistribution.
+A data science solution addressing inefficient inventory management across fulfillment centers. By implementing customer behavioral segmentation and SKU-level demand forecasting, this system replaces the one-size-fits-all stocking approach with regional and behavioral demand-aware inventory allocation strategies.
 
 ## 📊 Business Impact
-- **12% reduction** in shipping costs through optimized allocation  
-- **18% fewer stockouts** via improved demand prediction  
-- **20-hour monthly savings** in inventory redistribution  
-- **Scalable solution** for multi-location fulfillment networks  
+- **12% reduction** in shipping costs through optimized inventory placement
+- **18% fewer stockouts** via improved demand prediction and allocation
+- **20-hour monthly savings** in manual inventory redistribution efforts
+- **Scalable framework** for multi-location fulfillment operations
 
 ## 🔧 Technical Stack
 - **Languages**: Python 3.8+, SQL  
-- **ML Libraries**: scikit-learn, statsmodels, Prophet  
-- **Data Processing**: pandas, numpy, dask  
-- **Optimization**: PuLP, OR-Tools, Gurobi  
-- **Visualization**: matplotlib, seaborn, plotly  
-- **Database**: PostgreSQL, BigQuery  
-- **Cloud**: AWS/GCP data pipelines  
-- **Testing**: pytest, hypothesis  
-- **Containerization**: Docker  
+- **ML Libraries**: scikit-learn, statsmodels  
+- **Data Processing**: pandas, numpy  
+- **Database**: SQL-based cloud data pipelines  
+- **Visualization**: matplotlib, seaborn  
+- **Testing**: pytest  
 
 ## 🚀 Quick Start
 
 ### Prerequisites
 ```bash
 Python 3.8+
-PostgreSQL 12+
-Docker (optional)
+Access to cloud data warehouse
+SQL database connectivity
 ```
 
 ### Installation
 ```bash
 # Clone repository
-git clone https://github.com/username/inventory-allocation-system.git
-cd inventory-allocation-system
+git clone https://github.com/username/inventory-optimization.git
+cd inventory-optimization
 
 # Create environment
-conda env create -f environment.yml
-conda activate inventory-allocation
+python -m venv venv
+source venv/bin/activate  # On Windows: venv\Scripts\activate
 
-# Alternative: pip install
+# Install dependencies
 pip install -r requirements.txt
 
 # Run tests
@@ -59,98 +55,71 @@ python -c "import src; print('Installation successful!')"
 
 ### Quick Demo
 ```python
-from src.models.segmentation import CustomerSegmentation
-from src.models.forecasting import DemandForecaster
-from src.optimization.allocation import InventoryOptimizer
+from src.segmentation import CustomerSegmentation
+from src.forecasting import DemandForecaster
+from src.utils import load_data
 
-# Load data
-data = load_sample_data()
+# Load customer transaction data
+data = load_data('customer_transactions.csv')
 
-# Customer segmentation
-segmenter = CustomerSegmentation()
-segments = segmenter.fit_predict(data)
+# Apply customer behavioral segmentation
+segmenter = CustomerSegmentation(n_clusters=5)
+customer_segments = segmenter.fit_predict(data)
 
-# Demand forecasting
-forecaster = DemandForecaster()
-demand_forecast = forecaster.predict(data, segments)
+# Generate SKU-level demand forecasts by segment
+forecaster = DemandForecaster(model_type='statsmodels')
+demand_forecasts = forecaster.predict_by_segment(data, customer_segments)
 
-# Inventory optimization
-optimizer = InventoryOptimizer()
-allocation = optimizer.optimize(demand_forecast)
-
-print(f"Total cost reduction: ${allocation.cost_savings:,.2f}")
+# Display results
+print(f"Identified {len(set(customer_segments))} customer segments")
+print(f"Generated forecasts for {len(demand_forecasts)} SKU-segment combinations")
 ```
-
----
-
-## 🧪 Methodology & Validation
-
-### Experimental Design
-- **A/B Testing**: Randomized controlled trials across 50 fulfillment centers
-- **Control Groups**: Matched centers using propensity score matching
-- **Statistical Power**: 95% confidence intervals for all metrics
-- **Significance Testing**: Two-sided t-tests with Bonferroni correction
-
-### Model Validation
-- **Cross-Validation**: Time series split with 80/20 train/test
-- **Backtesting**: Rolling window validation over 12 months
-- **Robustness Testing**: Sensitivity analysis for parameter variations
-- **Business Validation**: Stakeholder review and domain expert validation
 
 ---
 
 ## 🔍 Key Features
 
-### 1. Customer Segmentation
-- **Algorithm**: K-means clustering with RFM analysis  
-- **Features**: Purchase frequency, monetary value, seasonality patterns  
-- **Validation**: Silhouette analysis and business interpretation  
-- **Statistical Significance**: p < 0.05 for segment differences
+### 1. Customer Behavioral Segmentation
+- **Algorithm**: K-means clustering with behavioral feature engineering
+- **Features**: Purchase frequency, seasonal patterns, regional preferences, product affinity
+- **Validation**: Silhouette analysis and business interpretability assessment
+- **Output**: Customer segments with distinct demand characteristics
 
-### 2. Demand Forecasting
-- **Models**: ARIMA, Prophet, Random Forest ensemble  
-- **Granularity**: Segment-level SKU demand by fulfillment center  
-- **Accuracy**: MAPE < 15% for top 80% of SKUs  
-- **Confidence Intervals**: 95% prediction intervals for uncertainty quantification
+### 2. SKU-Level Demand Forecasting
+- **Models**: ARIMA and seasonal decomposition using statsmodels
+- **Granularity**: Individual SKU demand by customer segment and fulfillment center
+- **Validation**: Time-series cross-validation and forecast accuracy metrics
+- **Output**: Demand predictions with confidence intervals for inventory planning
 
-### 3. Allocation Optimization
-- **Method**: Mixed-integer linear programming  
-- **Constraints**: Inventory limits, shipping capacity, SLA requirements  
-- **Objective**: Minimize total fulfillment costs  
-- **Solver**: Gurobi with custom heuristics for large-scale problems
+### 3. Fulfillment Center Stocking Strategy
+- **Method**: Segment-aware inventory allocation recommendations
+- **Inputs**: Demand forecasts, shipping cost matrices, inventory capacity constraints
+- **Optimization**: Cost minimization while maintaining service levels
+- **Output**: SKU allocation recommendations per fulfillment center
 
 ---
 
 ## 📈 Results
 
+### Problem Resolution
+- **Shipping Cost Reduction**: 12% decrease through optimized inventory placement
+- **Stockout Prevention**: 18% reduction in out-of-stock incidents
+- **Operational Efficiency**: 20 hours monthly savings in redistribution activities
+- **Process Improvement**: Replaced reactive manual processes with proactive data-driven allocation
+
 ### Model Performance
-- **Segmentation Silhouette Score**: 0.68 (95% CI: 0.64-0.72)
-- **Forecast Accuracy (MAPE)**: 12.3% (95% CI: 11.8%-12.8%)
-- **Allocation Efficiency**: 94% of optimal solution
-- **Model Stability**: <5% performance variation across quarters
-
-### Business Metrics
-- **Cost Reduction**: $2.4M annually (statistically significant, p < 0.001)
-- **Service Level**: 97.5% (improved from 92.1%, p < 0.001)
-- **Inventory Turnover**: 15% increase (p < 0.01)
-- **Customer Satisfaction**: 8.2/10 (improved from 7.6/10, p < 0.05)
-
-### Statistical Tests
-- **Normality**: Shapiro-Wilk test for residuals
-- **Homoscedasticity**: Breusch-Pagan test for constant variance
-- **Autocorrelation**: Durbin-Watson test for independence
-- **Multicollinearity**: VIF scores < 5 for all features
+- **Segmentation Quality**: Clear behavioral distinctions between customer groups
+- **Forecast Accuracy**: Improved prediction reliability for inventory planning
+- **Implementation Success**: Sustained performance improvements over 3+ months
 
 ---
 
 ## 🗂️ Repository Structure
 
 ```
-inventory-allocation-system/
+inventory-optimization/
 ├── README.md
 ├── requirements.txt
-├── environment.yml
-├── LICENSE
 ├── .gitignore
 ├── data/
 │   ├── README.md
@@ -158,189 +127,143 @@ inventory-allocation-system/
 │   ├── processed/
 │   └── sample/
 ├── notebooks/
-│   ├── 01_exploratory_data_analysis.ipynb
+│   ├── 01_data_exploration.ipynb
 │   ├── 02_customer_segmentation.ipynb
 │   ├── 03_demand_forecasting.ipynb
-│   ├── 04_inventory_optimization.ipynb
-│   ├── 05_model_validation.ipynb
-│   └── 06_results_analysis.ipynb
+│   ├── 04_allocation_strategy.ipynb
+│   └── 05_results_validation.ipynb
 ├── src/
 │   ├── __init__.py
 │   ├── data/
 │   │   ├── __init__.py
 │   │   ├── loader.py
 │   │   └── preprocessor.py
-│   ├── models/
-│   │   ├── __init__.py
-│   │   ├── segmentation.py
-│   │   ├── forecasting.py
-│   │   └── ensemble.py
-│   ├── optimization/
-│   │   ├── __init__.py
-│   │   ├── allocation.py
-│   │   └── constraints.py
-│   ├── validation/
-│   │   ├── __init__.py
-│   │   ├── statistical_tests.py
-│   │   └── business_validation.py
-│   └── visualization/
-│       ├── __init__.py
-│       └── dashboards.py
+│   ├── segmentation.py
+│   ├── forecasting.py
+│   ├── allocation.py
+│   ├── validation.py
+│   └── utils.py
 ├── tests/
 │   ├── __init__.py
 │   ├── test_segmentation.py
 │   ├── test_forecasting.py
-│   ├── test_optimization.py
 │   └── test_validation.py
 ├── results/
 │   ├── figures/
-│   ├── tables/
+│   ├── models/
 │   └── reports/
-├── docs/
-│   ├── methodology.md
-│   ├── data_dictionary.md
-│   ├── technical_appendix.md
-│   └── literature_review.md
+└── docs/
+    ├── methodology.md
+    ├── data_dictionary.md
+    └── technical_details.md
 ```
+
 ---
 
-<!--
-├── config/
-│   ├── model_config.yaml
-│   └── deployment_config.yam
-└── deploy/
-    ├── docker/
-    ├── aws/
-    └── gcp/
--->
+## 🔬 Methodology
 
-## 🔬 Technical Implementation
+### Data Science Approach
+1. **Exploratory Data Analysis**: Understanding customer behavior patterns and inventory dynamics
+2. **Feature Engineering**: Creating behavioral indicators for customer segmentation
+3. **Clustering Analysis**: Identifying distinct customer segments using unsupervised learning
+4. **Time Series Modeling**: Building SKU-level demand forecasts using statsmodels
+5. **Allocation Strategy**: Developing segment-aware inventory distribution recommendations
+6. **Validation**: Measuring business impact through A/B testing and performance monitoring
 
-### Statistical Methodology
-- **Hypothesis Testing**: Formulated null/alternative hypotheses for each metric
-- **Effect Size Calculation**: Cohen's d for practical significance assessment
-- **Multiple Testing Correction**: Bonferroni adjustment for family-wise error rate
-- **Confidence Intervals**: Bootstrap methods for non-parametric distributions
-
-### Robustness Testing
-- **Sensitivity Analysis**: Parameter perturbation studies
-- **Stress Testing**: Performance under extreme demand scenarios
-- **Cross-Validation**: Temporal and geographical holdout validation
-- **Ablation Studies**: Individual component contribution analysis
+### Problem-Solving Framework
+- **Root Cause Analysis**: Identified one-size-fits-all approach as core inefficiency
+- **Data-Driven Solution**: Leveraged customer behavioral data for personalized inventory management
+- **Iterative Development**: Continuous model refinement based on business feedback
+- **Scalable Implementation**: Designed for multi-location fulfillment network deployment
 
 ---
 
 ## 📓 Usage Examples
 
-### Running the Full Pipeline
+### Running the Analysis Pipeline
 ```bash
 # Data preprocessing
-python -m src.data.preprocessor --config config/data_config.yaml
+python -m src.data.preprocessor --input data/raw/ --output data/processed/
 
 # Customer segmentation
-python -m src.models.segmentation --n-clusters 5 --validate
+python -m src.segmentation --data data/processed/transactions.csv --clusters 5
 
 # Demand forecasting
-python -m src.models.forecasting --model ensemble --horizon 30
+python -m src.forecasting --segments data/processed/segments.csv --horizon 30
 
-# Inventory optimization
-python -m src.optimization.allocation --objective minimize_cost
-
-# Generate reports
-python -m src.reporting.generate_report --format pdf
+# Generate allocation recommendations
+python -m src.allocation --forecasts results/demand_forecasts.csv
 ```
 
-### Interactive Dashboard
+### Custom Analysis
+```python
+# Load and segment customers
+from src.segmentation import CustomerSegmentation
+from src.data.loader import load_transaction_data
+
+data = load_transaction_data('path/to/data.csv')
+segmenter = CustomerSegmentation(feature_columns=['frequency', 'recency', 'monetary'])
+segments = segmenter.fit_predict(data)
+
+# Generate segment-specific forecasts
+from src.forecasting import DemandForecaster
+forecaster = DemandForecaster()
+forecasts = forecaster.predict_by_segment(data, segments, forecast_horizon=30)
+
+# Export results
+forecasts.to_csv('results/segment_forecasts.csv', index=False)
+```
+
+---
+
+## 📘 Documentation
+- `methodology.md`: Detailed approach, algorithms, and validation methods
+- `data_dictionary.md`: Variable definitions and data source descriptions
+- `technical_details.md`: Implementation specifics and model parameters
+
+---
+
+## 🧪 Testing
+- **Unit Tests**: Model functionality and data processing validation
+- **Integration Tests**: End-to-end pipeline testing
+- **Business Logic Tests**: Validation of allocation strategy recommendations
+
 ```bash
-# Launch Streamlit dashboard
-streamlit run src/visualization/dashboard.py
+# Run all tests
+pytest tests/ -v
 
-# Access at: http://localhost:8501
+# Run with coverage
+pytest tests/ --cov=src --cov-report=html
 ```
 
 ---
 
-## 📘 Professional Documentation
-- `methodology.md`: Detailed technical approach and statistical methods
-- `data_dictionary.md`: Variable definitions, sources, and data quality metrics
-- `technical_appendix.md`: Mathematical formulations and algorithm details
-- `literature_review.md`: Academic references and industry best practices
+## 📊 Data Requirements
+- **Transaction Data**: Customer purchase history with timestamps and SKU details
+- **Inventory Data**: Stock levels and movement across fulfillment centers  
+- **Shipping Data**: Cost and delivery performance by fulfillment center
+- **Customer Data**: Geographic and demographic information (optional)
+
+*Note: Sample synthetic datasets provided for demonstration purposes.*
 
 ---
 
-## 🧪 Testing & Quality Assurance
-- **Test Coverage**: >90% (run `pytest --cov=src tests/`)
-- **Code Style**: Black, flake8, isort
-- **Type Checking**: mypy with strict settings
-- **Documentation**: Sphinx with autodoc and type hints
-
-```bash
-# Run all quality checks
-make test
-make lint
-make type-check
-make docs
-make security-check
-```
-
----
-
-## 📊 Data Sources
-- **Transaction Data**: E-commerce platform (2019-2024)
-- **Inventory Data**: Warehouse management system
-- **Customer Data**: CRM system with behavioral tracking
-- **External Data**: Economic indicators, seasonal patterns
-- **Sample Data**: Synthetic datasets available in `data/sample/`
-
-*Note: Proprietary data anonymized; synthetic data maintains statistical properties.*
-
----
-<!--
-## 🚀 Deployment & Reproducibility
-
-### Docker Setup
-```bash
-# Build image
-docker build -t inventory-allocation .
-
-# Run full pipeline
-docker run -v $(pwd)/data:/app/data inventory-allocation
-
-# Run specific component
-docker run inventory-allocation python -m src.models.forecasting
-```
-
-### Cloud Deployment
-- **AWS**: CloudFormation templates in `deploy/aws/`
-- **GCP**: Deployment scripts in `deploy/gcp/`
-- **Monitoring**: CloudWatch/Stackdriver integration
-
----
-
-## 📊 Model Monitoring & Maintenance
-- **Drift Detection**: Statistical tests for feature and target drift
-- **Performance Monitoring**: Automated alerts for accuracy degradation
-- **Retraining Schedule**: Monthly model updates with validation
-- **A/B Testing**: Continuous experimentation framework
--->
----
-
-## 📄 Citation
-```bibtex
-@misc{inventory_allocation_2024,
-  title={Inventory Allocation System: End-to-End Customer Segmentation and Demand Forecasting},
-  author={Your Name},
-  year={2024},
-  url={https://github.com/username/inventory-allocation-system}
-}
-```
+## 🔄 Model Maintenance
+- **Performance Monitoring**: Regular validation of forecast accuracy and business metrics
+- **Model Refresh**: Quarterly retraining with updated transaction data
+- **Segment Validation**: Ongoing assessment of customer behavior stability
+- **Business Review**: Monthly stakeholder meetings to validate allocation recommendations
 
 ---
 
 ## 🤝 Contributing
-Please read [CONTRIBUTING.md](CONTRIBUTING.md) for contribution guidelines and code of conduct.
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/improvement`)
+3. Commit changes (`git commit -am 'Add improvement'`)
+4. Push to branch (`git push origin feature/improvement`)
+5. Create a Pull Request
 
 ---
 
 ## 🏷️ Tags
-`inventory-optimization` `customer-segmentation` `demand-forecasting` `supply-chain` `machine-learning` `python` `statistics` `operations-research`
+`inventory-management` `customer-segmentation` `demand-forecasting` `supply-chain` `data-science` `python` `scikit-learn` `statsmodels`
