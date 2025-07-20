@@ -107,5 +107,31 @@ Based on business impact and solution feasibility:
 - Monthly executive summary reporting on key performance indicators  
 
 ---
+## 1.9 Problem Translation to Data Science Tasks
 
+To address the business problem through data science, the following technical tasks were defined:
+
+### A. Customer Segmentation  
+- **Task Type:** Unsupervised Learning (Clustering)  
+- **Goal:** Identify distinct customer behavioral and regional segments based on historical purchase patterns, geography, and engagement metrics  
+- **Business Impact:** Enables fulfillment centers to stock inventory that reflects localized and behavioral demand patterns, moving away from the generic one-size-fits-all strategy
+
+### B. SKU-Level Demand Forecasting  
+- **Task Type:** Supervised Learning / Time Series Forecasting  
+- **Goal:** Predict future demand for each SKU at the fulfillment center level, segmented by customer clusters  
+- **Business Impact:** Improves inventory planning, reducing stockouts and overstocking
+
+### C. Inventory Allocation Optimization  
+- **Task Type:** Prescriptive Analytics / Decision Support  
+- **Goal:** Use demand forecasts to inform and optimize inventory distribution across fulfillment centers  
+- **Business Impact:** Reduces shipping costs and manual redistribution efforts by ensuring the right products are stocked closer to the customers who need them
+
+### D. Data Engineering and Pipeline Automation  
+- **Task Type:** Data Pipeline Design and ETL Automation  
+- **Goal:** Build robust, scalable data pipelines using SQL-based cloud infrastructure to ingest, transform, and serve data to ML models  
+- **Business Impact:** Ensures automation, reproducibility, and timely access to actionable insights
+
+These data science components work in tandem to directly target the root causes of inefficiencies outlined in the original business problem.
+
+---
 *This section will be updated as new information or constraints arise during the project lifecycle.*
