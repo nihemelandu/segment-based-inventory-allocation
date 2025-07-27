@@ -134,4 +134,107 @@ To address the business problem through data science, the following technical ta
 These data science components work in tandem to directly target the root causes of inefficiencies outlined in the original business problem.
 
 ---
+
+```mermaid
+erDiagram
+    CUSTOMERS {
+        string customer_id PK
+        date registration_date
+        string customer_type
+        string city
+        string state
+        string zip_code
+        string customer_segment
+        int total_orders
+    }
+
+    PRODUCTS {
+        string sku_id PK
+        string product_name
+        string category
+        string subcategory
+        string brand
+        float price
+        float weight_lbs
+        float dimensions_cubic_in
+        date launch_date
+        float seasonality_factor
+        int base_demand
+    }
+
+    FULFILLMENT_CENTERS {
+        string fc_id PK
+        string fc_name
+        string city
+        string state
+        string zip_code
+        int total_capacity
+        float current_utilization
+        float storage_cost_per_unit
+        float labor_cost_per_hour
+        date operational_since
+    }
+
+    ORDERS {
+        string order_id PK
+        string customer_id FK
+        date order_date
+        float order_total
+        float shipping_cost
+        string shipping_method
+        string fulfillment_center FK
+        string order_status
+        float total_weight
+        string customer_zip
+    }
+
+    ORDER_ITEMS {
+        string order_id PK, FK
+        string sku_id PK, FK
+        int quantity
+        float unit_price
+        float line_total
+    }
+
+    INVENTORY_CURRENT {
+        string fc_id PK, FK
+        string sku_id PK, FK
+        int on_hand_qty
+        int committed_qty
+        int available_qty
+        int reorder_point
+        int max_stock_level
+        timestamp last_updated
+    }
+
+    INVENTORY_MOVEMENTS {
+        string movement_id PK
+        string fc_id FK
+        string sku_id FK
+        string movement_type
+        int quantity
+        date movement_date
+        string reference_id
+    }
+
+    SHIPPING_COSTS {
+        string fc_id PK, FK
+        string destination_zip PK
+        float standard_cost
+        float expedited_cost
+        int avg_transit_days
+        string carrier
+    }
+
+    CUSTOMERS ||--o{ ORDERS : places
+    ORDERS ||--o{ ORDER_ITEMS : contains
+    PRODUCTS ||--o{ ORDER_ITEMS : ordered_as
+    FULFILLMENT_CENTERS ||--o{ ORDERS : fulfills
+    FULFILLMENT_CENTERS ||--o{ INVENTORY_CURRENT : stocks
+    PRODUCTS ||--o{ INVENTORY_CURRENT : stocked_as
+    FULFILLMENT_CENTERS ||--o{ INVENTORY_MOVEMENTS : moves_inventory
+    PRODUCTS ||--o{ INVENTORY_MOVEMENTS : inventory_moved
+    FULFILLMENT_CENTERS ||--o{ SHIPPING_COSTS : ships_from
+
+```
 *This section will be updated as new information or constraints arise during the project lifecycle.*
