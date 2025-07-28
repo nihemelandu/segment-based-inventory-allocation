@@ -7,7 +7,7 @@
 **Urgency:** High — Critical operational efficiency and cost impact
 
 **Original Problem Description:**  
-> "The company is facing high shipping costs, frequent stockouts, and excessive time spent on inventory redistribution across fulfillment centers, due to a one-size-fits-all stocking approach that doesn't account for regional or behavioral differences in customer demand."
+> "The company is experiencing high shipping costs, frequent stockouts, and excessive time spent on inventory redistribution across fulfillment centers, due to a one-size-fits-all stocking approach that doesn't account for regional or behavioral differences in customer demand."
 
 ## 1.2 Problem Decomposition
 
