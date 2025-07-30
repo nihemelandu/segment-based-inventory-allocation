@@ -2,8 +2,8 @@
 
 ## 1.1 Original Business Problem Statement
 
-**Stakeholder:** VP of Supply Chain Operations  
-**Date:** 06/19/2025  
+**Stakeholder:** Client Representive  
+**Date:** 05/19/2025  
 **Urgency:** High — Critical operational efficiency and cost impact
 
 **Original Problem Description:**  
@@ -43,7 +43,7 @@ Based on business impact and solution feasibility:
 **Primary Focus:** Understand and address the root causes of inefficient inventory management that result in high shipping costs, frequent stockouts, and excessive redistribution efforts.
 
 **Specific Problem Definition:**  
-"Determine how the current one-size-fits-all stocking approach fails to account for regional and behavioral differences in customer demand, leading to suboptimal inventory allocation across fulfillment centers."
+Determine how the current one-size-fits-all stocking approach fails to account for regional and behavioral differences in customer demand, leading to suboptimal inventory allocation across fulfillment centers. The core challenge is transforming a reactive, uniform inventory strategy into a predictive, segment-aware system that anticipates where specific products will be needed based on customer behavior patterns.
 
 ## 1.5 Success Criteria
 
