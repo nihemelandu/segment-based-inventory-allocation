@@ -1,0 +1,164 @@
+Data Request: Customer-Driven Fulfillment Optimization
+
+Project Name: Customer Clustering & SKU Demand Forecasting for Fulfillment Optimization
+Requestor: Independent Data Scientist
+Business Sponsor: Supply Chain Operations
+Target Completion: 7/31/2025
+Priority: High - P1
+
+PROJECT OVERVIEW
+================
+We're building a machine learning solution to optimize inventory allocation across fulfillment centers by clustering customers based on purchasing behavior and forecasting SKU-level demand. Expected outcomes include 12% reduction in shipping costs, 18% fewer stockouts, and 20-hour monthly savings in inventory redistribution.
+
+DATA REQUIREMENTS
+=================
+
+1. Customer Transaction Data
+---------------------------
+Business Need: Customer clustering and behavior analysis
+Tables Needed: Customer orders, order line items
+
+Required Fields:
+- Customer ID (unique identifier)
+- Order ID and order date/timestamp
+- Order total amount and item quantities
+- Product SKUs purchased and categories
+- Customer demographics (if available): registration date, customer type, geographic location
+- Order fulfillment details: assigned fulfillment center, shipping method, delivery address (ZIP code minimum)
+- Order status and timestamps (placed, shipped, delivered)
+
+Data Specifications:
+- Historical Depth: 24-36 months of complete data
+- Granularity: Individual transaction level (not aggregated)
+- Update Frequency: Daily refresh preferred
+- Sample Size: All customers (full dataset needed for clustering)
+
+2. Product/SKU Master Data
+--------------------------
+Business Need: Demand forecasting and inventory planning
+
+Required Fields:
+- SKU ID and product name/description
+- Product category hierarchy (category, subcategory, brand)
+- Product attributes: dimensions, weight, price, seasonality indicators
+- Product lifecycle information: launch date, discontinuation date
+- Supplier information (if available)
+
+3. Fulfillment Center Data
+--------------------------
+Business Need: Inventory allocation optimization
+
+Required Fields:
+- Fulfillment center ID and name
+- Geographic location (address, coordinates if available)
+- Capacity metrics: total capacity, current utilization
+- Operational costs: storage cost per unit, labor costs
+- Service areas: ZIP codes or regions served
+- Facility capabilities: product types handled, special storage requirements
+
+4. Inventory Data
+-----------------
+Business Need: Current state analysis and redistribution optimization
+
+Required Fields:
+- SKU ID and fulfillment center ID
+- Current inventory levels (on-hand, committed, available)
+- Historical inventory movements: receipts, shipments, transfers
+- Inventory redistribution records: frequency, costs, reasons
+- Stockout incidents: dates, duration, root causes
+
+5. Shipping and Logistics Data
+------------------------------
+Business Need: Cost optimization and delivery performance analysis
+
+Required Fields:
+- Shipping costs by route (FC to customer ZIP)
+- Delivery times by shipping method and route
+- Carrier performance data
+- Historical shipping volume by FC and destination
+- Cross-docking and transfer costs between FCs
+
+DATA QUALITY REQUIREMENTS
+=========================
+
+Completeness:
+- Customer transaction data: 95%+ completeness for core fields
+- Missing values acceptable for: optional demographics, some product attributes
+- Critical fields must be 100% complete: Customer ID, Order ID, SKU ID, Order Date
+
+Accuracy:
+- Financial data (order amounts, costs) must be reconciled with finance systems
+- Inventory data should be validated against most recent cycle counts
+- Geographic data (ZIP codes) must be standardized format
+
+Consistency:
+- All timestamps in UTC format
+- Currency values in USD
+- Standardized SKU naming conventions
+- Consistent fulfillment center identifiers across all tables
+
+TECHNICAL SPECIFICATIONS
+========================
+
+Data Format:
+- Preferred: Parquet files or CSV with proper encoding (UTF-8)
+- Acceptable: Database export, JSON (for nested data)
+- File Naming: [table_name]_[YYYYMMDD]_[version].format
+
+Data Delivery:
+- Method: Secure cloud storage (S3/Azure/GCP) with access credentials
+- Schedule: Initial full extract, then daily incrementals
+- Notification: Email notification when new data is available
+- Documentation: Data dictionary and schema documentation included
+
+Access & Security:
+- PII Handling: Customer data may contain PII - ensure compliance with data privacy policies
+- Access Level: Read-only access to designated data science team members
+- Retention: Data retention as per company policy
+- Anonymization: If required by policy, provide anonymized customer identifiers (but maintain consistency for clustering)
+
+SAMPLE DATA REQUEST
+===================
+Please provide sample datasets (1000-5000 records each) for initial data profiling:
+- Representative sample across all customer segments
+- Include seasonal variations (if requesting during specific season)
+- Mix of high and low volume SKUs
+- Multiple fulfillment centers represented
+
+DOCUMENTATION NEEDED
+====================
+1. Data Dictionary: Field definitions, data types, business rules
+2. Schema Documentation: Table relationships, primary/foreign keys
+3. Known Data Quality Issues: Missing data patterns, known errors, system limitations
+4. Business Logic: Calculation methods for derived fields, business rules
+5. Source System Information: Where data originates, update frequencies, contact persons
+6. Historical Context: Any system changes, migrations, or data structure changes
+
+SUCCESS METRICS
+===============
+To validate data quality, we'll measure:
+- Customer segmentation makes business sense (validated with business users)
+- Demand forecasts align with historical patterns
+- Inventory optimization recommendations are actionable
+- Model performance meets accuracy thresholds (MAPE < 15% for demand forecasting)
+
+TIMELINE & MILESTONES
+=====================
+- Data Request Submitted: 7/26/2025
+- Sample Data Delivery: 7/29/2025
+- Full Data Delivery: 
+- Data Validation Complete: 
+- EDA and Initial Modeling: 
+
+
+QUESTIONS & CLARIFICATIONS
+==========================
+Please let us know:
+1. Are there any data access restrictions or approval processes required?
+2. What is the earliest available data date for each table?
+3. Are there any planned system changes that might affect data availability?
+4. Can you provide insights on any known data quality issues?
+5. What is the typical data refresh schedule for each source system?
+
+---
+

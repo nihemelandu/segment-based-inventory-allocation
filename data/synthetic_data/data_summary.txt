@@ -1,0 +1,61 @@
+SYNTHETIC DATA GENERATION SUMMARY
+==================================================
+Generation Date: 2025-07-28 01:22:48
+Data Period: 2022-01-01 to 2024-12-31
+
+CUSTOMERS
+------------------------------
+Records: 10,000
+Columns: 8
+Missing Data:
+  city: 194 (1.9%)
+
+PRODUCTS
+------------------------------
+Records: 2,000
+Columns: 11
+Missing Data:
+  brand: 77 (3.9%)
+
+FULFILLMENT_CENTERS
+------------------------------
+Records: 7
+Columns: 10
+No missing data
+
+ORDERS
+------------------------------
+Records: 15,668
+Columns: 10
+Missing Data:
+  fulfillment_center: 2415 (15.4%)
+
+ORDER_ITEMS
+------------------------------
+Records: 32,815
+Columns: 5
+No missing data
+
+INVENTORY_CURRENT
+------------------------------
+Records: 9,864
+Columns: 8
+No missing data
+
+INVENTORY_MOVEMENTS
+------------------------------
+Records: 49,320
+Columns: 7
+No missing data
+
+SHIPPING_COSTS
+------------------------------
+Records: 98
+Columns: 6
+No missing data
+
+BUSINESS LOGIC VALIDATION
+------------------------------
+Customer Segments: {np.str_('medium_frequency'): 4475, np.str_('low_frequency'): 3037, np.str_('high_frequency'): 1454, np.str_('seasonal'): 1034}
+Product Categories: {np.str_('Electronics'): 412, np.str_('Home & Garden'): 410, np.str_('Sports'): 397, np.str_('Books'): 393, np.str_('Clothing'): 388}
+Order Statuses: {np.str_('delivered'): 14712, np.str_('cancelled'): 762, np.str_('shipped'): 94, np.str_('processing'): 62, np.str_('pending'): 38}
